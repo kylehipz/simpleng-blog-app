@@ -32,6 +32,7 @@
 ### Full, High-level Design
 ### Scaling Blog Reads
 ### Scaling Blog Writes
+### Realtime Updates
 
 ## Technology Stack
 1. NodeJS

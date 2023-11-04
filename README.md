@@ -18,7 +18,20 @@
 1. The system should be highly available
 2. Latency should be low
 
+## API endpoints
+1. POST /follow - following a user
+2. POST /posts - creating a post
+3. GET /feed - getting the blog feed of the user, should contain blogs of the users that the user follows
+4. GET /posts/:id - getting a specific post
+5. POST /posts/:id/reaction - reacting to a post
+6. POST /posts/:id/comment - commenting to a post
+
+## Database Design
+
 ## System Design
+### Full, High-level Design
+### Scaling Blog Reads
+### Scaling Blog Writes
 
 ## Technology Stack
 1. NodeJS
@@ -28,13 +41,14 @@
 5. PostgreSQL
 6. Docker
 7. Kubernetes
-8. Nginx
-9. Amazon ELB
-10. Amazon EC2/ECS/EKS
-11. Apache Kafka
-12. RabbitMQ
-13. Redis
-14. Amazon S3
-15. Amazon SQS
-16. ElasticSearch
-17. Terraform
+8. Docker Swarm
+9. Nginx
+10. Amazon ELB
+11. Amazon EC2/ECS/EKS
+12. Apache Kafka
+13. RabbitMQ
+14. Redis
+15. Amazon S3
+16. Amazon SQS
+17. ElasticSearch
+18. Terraform

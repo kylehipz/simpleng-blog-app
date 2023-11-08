@@ -37,7 +37,7 @@
 ## Technology Stack
 1. NodeJS
 2. TypeScript
-3. KoaJS
+3. NestJS
 4. PNPM
 5. PostgreSQL
 6. Docker

@@ -30,6 +30,8 @@
 
 ## System Design
 ### Full, High-level Design
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/3c3134e3-40ec-4e92-9110-7de1e27f682f)
+
 ### Scaling Blog Reads
 ### Scaling Blog Writes
 ### Realtime Updates (Blog Feed)

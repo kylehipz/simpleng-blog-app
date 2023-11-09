@@ -38,8 +38,12 @@
 ![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/a1340181-28f4-4678-be70-e0bfd9a02e3d)
 
 ### Scaling Blog Writes
+### TBD
 ### Realtime Updates (Blog Feed)
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/f0f5a619-1cd4-43c6-8533-b03251484416)
+
 ### Realtime Updates (Blog reactions/comments)
+### TBD
 
 ## Technology Stack
 1. Go

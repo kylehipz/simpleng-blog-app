@@ -30,7 +30,8 @@
 
 ## System Design
 ### Full, High-level Design
-![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/3c3134e3-40ec-4e92-9110-7de1e27f682f)
+![high-level](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/87143987-f1b1-4d62-8ad8-4024aaa68a1f)
+
 
 ### Scaling Blog Reads
 ### Scaling Blog Writes

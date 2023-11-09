@@ -30,30 +30,30 @@
 
 ## System Design
 ### Full, High-level Design
-![high-level](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/87143987-f1b1-4d62-8ad8-4024aaa68a1f)
-
-
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/997072f7-046b-4c07-af76-bb86cd24c468)
+### User Blog Feed
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/793fa1e5-9149-4856-b2ad-31a72cf2d6d2)
 ### Scaling Blog Reads
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/93e7f9cc-964f-4ae5-b7cf-3f29b34ac02b)
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/a1340181-28f4-4678-be70-e0bfd9a02e3d)
+
 ### Scaling Blog Writes
 ### Realtime Updates (Blog Feed)
 ### Realtime Updates (Blog reactions/comments)
 
 ## Technology Stack
-1. NodeJS
-2. TypeScript
-3. NestJS
-4. PNPM
-5. PostgreSQL
-6. Docker
-7. Kubernetes
-8. Docker Swarm
-9. Nginx
-10. Amazon ELB
-11. Amazon EC2/ECS/EKS
-12. Apache Kafka
-13. RabbitMQ
-14. Redis
-15. Amazon S3
-16. Amazon SQS
-17. ElasticSearch
-18. Terraform
+1. Go
+2. PostgreSQL
+3. Docker
+4. Kubernetes
+5. Docker Swarm
+6. Nginx
+7. Amazon ELB
+8. Amazon EC2/ECS/EKS
+9. Apache Kafka
+10. RabbitMQ
+11. Redis
+12. Amazon S3
+13. Amazon SQS
+14. ElasticSearch
+15. Terraform

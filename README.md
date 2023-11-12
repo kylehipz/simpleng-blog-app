@@ -27,6 +27,7 @@
 6. POST /posts/:id/comment - commenting to a post
 
 ## Database Design
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/f2255928-e1a6-4332-9545-ebb4f63a9a8e)
 
 ## System Design
 ### Full, High-level Design

@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  blog-post-service:
+    build:
+      context: ./blog-post-service/
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8000:8000
+    restart: always
+    volumes:
+      - ./blog-post-service:/app
+
+  blog-post-db:
+    image: postgres-14:alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: blog-post-db

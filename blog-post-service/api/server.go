@@ -4,6 +4,8 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+
+	"github.com/kylehipz/simpleng-blog-app/blog-post-service/services"
 )
 
 type Server struct {
@@ -13,7 +15,13 @@ type Server struct {
 func (s *Server) Start() error {
 	app := fiber.New()
 
-	postsHandler := &PostsHandler{}
+	postsService := &services.PostsService{
+		DB: nil,
+	}
+
+	postsHandler := &PostsHandler{
+		service: postsService,
+	}
 
 	app.Get("/posts/:id", postsHandler.getBlogPost)
 	app.Post("/posts", postsHandler.createBlogPost)

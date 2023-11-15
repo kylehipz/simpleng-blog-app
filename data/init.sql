@@ -26,3 +26,6 @@ CREATE TABLE attachment (
   url VARCHAR NOT NULL,
   CONSTRAINT fk_post FOREIGN KEY(post_id) REFERENCES post(id)
 );
+
+INSERT INTO users (email, username) VALUES ('kylehipolito2109@gmail.com', 'kylehipz'),
+('go.ghiannine@gmail.com', 'ghiago');

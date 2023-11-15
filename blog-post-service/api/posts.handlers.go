@@ -7,7 +7,7 @@ import (
 )
 
 type PostsHandler struct {
-	service *services.PostsService
+	service *services.BlogPostService
 }
 
 func (h *PostsHandler) createBlogPost(c *fiber.Ctx) error {
@@ -19,10 +19,11 @@ func (h *PostsHandler) createBlogPost(c *fiber.Ctx) error {
 func (h *PostsHandler) getBlogPost(c *fiber.Ctx) error {
 	postId := c.Params("id")
 
+	blogPost := h.service.GetPost(postId)
+
 	// post := h.service.GetPost(postId)
 
 	return c.JSON(fiber.Map{
-		"data":    postId,
-		"message": "NYEEEEE",
+		"data": blogPost,
 	})
 }

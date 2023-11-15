@@ -5,11 +5,11 @@ import (
 	"github.com/kylehipz/simpleng-blog-app/blog-post-service/types"
 )
 
-type PostsService struct {
+type BlogPostService struct {
 	DB store.Database
 }
 
-func (s *PostsService) CreatePost(post *types.Blog) *types.Blog {
+func (s *BlogPostService) CreatePost(post *types.Blog) *types.Blog {
 	newPost, err := s.DB.AddBlogPost(post)
 	if err != nil {
 		return newPost
@@ -18,7 +18,7 @@ func (s *PostsService) CreatePost(post *types.Blog) *types.Blog {
 	return nil
 }
 
-func (s *PostsService) GetPost(id string) *types.Blog {
+func (s *BlogPostService) GetPost(id string) *types.Blog {
 	post, err := s.DB.FindBlogPostById(id)
 	if err != nil {
 		return post

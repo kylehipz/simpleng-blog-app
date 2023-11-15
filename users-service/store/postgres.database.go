@@ -12,8 +12,8 @@ type PostgresStore struct {
 	DB *sql.DB
 }
 
-func (ps *PostgresStore) FindUsers(id string) (*types.Blog, error) {
-	var blogPost *types.Blog
+func (ps *PostgresStore) FindUsers(id string) (*types.User, error) {
+	var blogPost *types.User
 
 	rows, err := ps.DB.Query("SELECT * FROM post WHERE id = $1", id)
 	if err != nil {
@@ -24,9 +24,5 @@ func (ps *PostgresStore) FindUsers(id string) (*types.Blog, error) {
 
 	rows.Scan(&blogPost)
 
-	return blogPost, nil
-}
-
-func (ps *PostgresStore) InsertFollow(blogPost *types.Blog) (*types.Blog, error) {
 	return blogPost, nil
 }

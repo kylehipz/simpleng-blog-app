@@ -12,8 +12,17 @@ services:
       - ./blog-post-service:/app
 
   blog-post-db:
-    image: postgres-14:alpine
+    image: postgres:14-alpine
     restart: always
     environment:
       POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
       POSTGRES_DB: blog-post-db
+    ports:
+      - 5434:5432
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+      - blog-post-service-volume:/var/lib/postgresql/data
+
+volumes:
+  blog-post-service-volume:

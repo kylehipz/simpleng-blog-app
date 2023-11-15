@@ -11,6 +11,16 @@ services:
     volumes:
       - ./blog-post-service:/app
 
+  users-service:
+    build:
+      context: ./users-service/
+      dockerfile: Dockerfile.dev
+    ports:
+      - 8001:8000
+    restart: always
+    volumes:
+      - ./users-service:/app
+
   blog-post-db:
     image: postgres:14-alpine
     restart: always

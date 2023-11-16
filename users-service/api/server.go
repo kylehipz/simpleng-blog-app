@@ -37,6 +37,7 @@ func (s *Server) Start() error {
 	}
 
 	app.Get("/api/users", usersHandler.getUsers)
+	app.Post("/api/follow", usersHandler.followUser)
 
 	log.Println("Server started on port", s.ListenAddr)
 	return app.Listen(s.ListenAddr)

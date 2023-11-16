@@ -2,6 +2,7 @@ package store
 
 import (
 	"database/sql"
+	"fmt"
 
 	_ "github.com/lib/pq"
 
@@ -34,5 +35,29 @@ func (ps *PostgresStore) FindUsers() ([]*types.User, error) {
 }
 
 func (ps *PostgresStore) InsertFollow(follow *types.Follow) (*types.Follow, error) {
-	return nil, nil
+	existingFollow := &types.Follow{}
+
+	findRow := ps.DB.QueryRow(
+		"SELECT * FROM follow WHERE follower = $1 AND followee = $2",
+		follow.Follower,
+		follow.Followee,
+	)
+
+	findRow.Scan(&existingFollow.Follower, &existingFollow.Followee)
+
+	if existingFollow.Follower == follow.Follower && existingFollow.Followee == follow.Followee {
+		return nil, fmt.Errorf("User already followed")
+	}
+
+	insertResult := &types.Follow{}
+
+	row := ps.DB.QueryRow(
+		"INSERT INTO follow VALUES($1, $2) RETURNING *",
+		follow.Follower,
+		follow.Followee,
+	)
+
+	row.Scan(&insertResult.Follower, &insertResult.Followee)
+
+	return insertResult, nil
 }

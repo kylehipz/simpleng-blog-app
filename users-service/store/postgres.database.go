@@ -5,7 +5,7 @@ import (
 
 	_ "github.com/lib/pq"
 
-	"github.com/kylehipz/simpleng-blog-app/blog-post-service/types"
+	"github.com/kylehipz/simpleng-blog-app/users-service/types"
 )
 
 type PostgresStore struct {

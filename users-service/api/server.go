@@ -7,8 +7,8 @@ import (
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/lib/pq"
 
-	"github.com/kylehipz/simpleng-blog-app/blog-post-service/services"
-	"github.com/kylehipz/simpleng-blog-app/blog-post-service/store"
+	"github.com/kylehipz/simpleng-blog-app/users-service/services"
+	"github.com/kylehipz/simpleng-blog-app/users-service/store"
 )
 
 type Server struct {

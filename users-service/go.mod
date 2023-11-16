@@ -1,4 +1,4 @@
-module github.com/kylehipz/simpleng-blog-app/blog-post-service
+module github.com/kylehipz/simpleng-blog-app/users-service
 
 go 1.21.1
 

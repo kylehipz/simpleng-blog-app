@@ -5,7 +5,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 
-	"github.com/kylehipz/simpleng-blog-app/blog-post-service/services"
+	"github.com/kylehipz/simpleng-blog-app/users-service/services"
 )
 
 type UsersHandler struct {

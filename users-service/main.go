@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/kylehipz/simpleng-blog-app/blog-post-service/api"
+	"github.com/kylehipz/simpleng-blog-app/users-service/api"
 )
 
 var listenAddr = ":8000"

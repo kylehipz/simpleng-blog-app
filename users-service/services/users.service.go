@@ -3,8 +3,8 @@ package services
 import (
 	"log"
 
-	"github.com/kylehipz/simpleng-blog-app/blog-post-service/store"
-	"github.com/kylehipz/simpleng-blog-app/blog-post-service/types"
+	"github.com/kylehipz/simpleng-blog-app/users-service/store"
+	"github.com/kylehipz/simpleng-blog-app/users-service/types"
 )
 
 type UsersService struct {

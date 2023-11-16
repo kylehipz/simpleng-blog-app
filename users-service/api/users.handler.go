@@ -1,1 +1,24 @@
 package api
+
+import (
+	"log"
+
+	"github.com/gofiber/fiber/v2"
+
+	"github.com/kylehipz/simpleng-blog-app/blog-post-service/services"
+)
+
+type UsersHandler struct {
+	service *services.UsersService
+}
+
+func (h *UsersHandler) getUsers(c *fiber.Ctx) error {
+	users, err := h.service.GetUsers()
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	return c.JSON(fiber.Map{
+		"data": users,
+	})
+}

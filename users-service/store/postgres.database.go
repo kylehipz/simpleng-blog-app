@@ -12,17 +12,27 @@ type PostgresStore struct {
 	DB *sql.DB
 }
 
-func (ps *PostgresStore) FindUsers(id string) (*types.User, error) {
-	var blogPost *types.User
+func (ps *PostgresStore) FindUsers() ([]*types.User, error) {
+	var users []*types.User
 
-	rows, err := ps.DB.Query("SELECT * FROM post WHERE id = $1", id)
+	rows, err := ps.DB.Query("SELECT * FROM users")
 	if err != nil {
 		return nil, err
 	}
 
 	defer rows.Close()
 
-	rows.Scan(&blogPost)
+	for rows.Next() {
+		user := &types.User{}
 
-	return blogPost, nil
+		rows.Scan(&user.ID, &user.Email, &user.UserName)
+
+		users = append(users, user)
+	}
+
+	return users, nil
+}
+
+func (ps *PostgresStore) InsertFollow(follow *types.Follow) (*types.Follow, error) {
+	return nil, nil
 }

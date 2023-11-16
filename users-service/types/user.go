@@ -5,3 +5,8 @@ type User struct {
 	Email    string `json:"email"`
 	UserName string `json:"username"`
 }
+
+type Follow struct {
+	Follower string `json:"follower"`
+	Followee string `json:"followee"`
+}

@@ -45,3 +45,10 @@ services:
     volumes:
       - $PWD/follow:/app
 
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: simpleng-blog-app

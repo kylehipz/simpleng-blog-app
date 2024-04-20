@@ -23,3 +23,14 @@ services:
     volumes:
       - $PWD/blog-writer:/app
 
+  home-feed-service:
+    build:
+      context: $PWD/home-feed/
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5002:5002
+    environment:
+      PORT: 5002
+    volumes:
+      - $PWD/home-feed:/app
+

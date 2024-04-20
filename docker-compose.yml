@@ -34,3 +34,14 @@ services:
     volumes:
       - $PWD/home-feed:/app
 
+  follow-service:
+    build:
+      context: $PWD/follow
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5003:5003
+    environment:
+      PORT: 5003
+    volumes:
+      - $PWD/follow:/app
+

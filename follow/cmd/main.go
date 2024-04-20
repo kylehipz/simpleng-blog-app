@@ -12,10 +12,16 @@ func main() {
 	port := os.Getenv("PORT")
 	app := fiber.New()
 
-	v1 := app.Group("/api/v1/home-feed")
-	v1.Get("/", func(c fiber.Ctx) error {
+	v1 := app.Group("/api/v1/follow")
+	v1.Get("/follow", func(c fiber.Ctx) error {
 		return c.JSON(fiber.Map{
-			"data": "home-feed",
+			"data": "follow",
+		})
+	})
+
+	v1.Get("/unfollow", func(c fiber.Ctx) error {
+		return c.JSON(fiber.Map{
+			"data": "unfollow",
 		})
 	})
 

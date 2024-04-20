@@ -1,0 +1,54 @@
+version: '3.9'
+
+services:
+  users-service:
+    build:
+      context: $PWD/users/
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5000:5000
+    environment:
+      PORT: 5000
+    volumes:
+      - $PWD/users:/app
+
+  blog-writer-service:
+    build:
+      context: $PWD/blog-writer/
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5001:5001
+    environment:
+      PORT: 5001
+    volumes:
+      - $PWD/blog-writer:/app
+
+  home-feed-service:
+    build:
+      context: $PWD/home-feed/
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5002:5002
+    environment:
+      PORT: 5002
+    volumes:
+      - $PWD/home-feed:/app
+
+  follow-service:
+    build:
+      context: $PWD/follow
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5003:5003
+    environment:
+      PORT: 5003
+    volumes:
+      - $PWD/follow:/app
+
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: simpleng-blog-app

@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  users-service:
+    build:
+      context: $PWD/users/
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5001:5000
+    environment:
+      PORT: 5000
+    volumes:
+      - $PWD/users:/app
+

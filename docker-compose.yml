@@ -6,9 +6,20 @@ services:
       context: $PWD/users/
       dockerfile: dev.Dockerfile
     ports:
-      - 5001:5000
+      - 5000:5000
     environment:
       PORT: 5000
     volumes:
       - $PWD/users:/app
+
+  blog-writer-service:
+    build:
+      context: $PWD/blog-writer/
+      dockerfile: dev.Dockerfile
+    ports:
+      - 5001:5001
+    environment:
+      PORT: 5001
+    volumes:
+      - $PWD/blog-writer:/app
 

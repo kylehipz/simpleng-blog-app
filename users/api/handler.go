@@ -2,11 +2,11 @@ package api
 
 import (
 	"log"
+	"net/http"
 
 	"github.com/gofiber/fiber/v3"
 
-	"simpleng-blog-app/users/internal/database"
-	"simpleng-blog-app/users/internal/models"
+	"simpleng-blog-app/users/internal/usecases"
 )
 
 type RegisterRequestBody struct {
@@ -20,20 +20,17 @@ func RegisterUserHandler(c fiber.Ctx) error {
 		log.Fatal(err)
 	}
 
-	newUser := models.User{UserName: requestBody.UserName}
+	newUser, err := usecases.RegisterUser(requestBody.UserName)
+	if err != nil {
+		log.Println("error occured")
+		log.Printf("Error: %v\n", err)
 
-	result := database.DB.Create(&newUser)
-
-	if result.Error != nil {
-		log.Println("Error occured!")
-		log.Println(result.Error)
-
-		return c.Status(400).JSON(fiber.Map{
-			"message": "Attempt to create a user failed",
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "Error occured while registering a user",
 		})
 	}
 
-	return c.JSON(fiber.Map{
-		"data": requestBody,
+	return c.Status(http.StatusCreated).JSON(fiber.Map{
+		"data": newUser,
 	})
 }

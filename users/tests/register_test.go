@@ -24,16 +24,31 @@ func TestRegister(t *testing.T) {
 
 	newUser, err := usecases.RegisterUser(username)
 	if err != nil {
-		t.Errorf("Register user failed")
+		t.Errorf("RegisterUser should be able to register user %s\n", username)
 	}
 
 	// Fetch record
 	db := database.DB
 	user := models.User{}
-	db.First(&user, "username = ?", username)
+	db.First(&user, "user_name = ?", username)
 
 	if user.UserName != username && user.UserName != newUser.UserName &&
 		newUser.UserName != username {
-		t.Errorf("RegisterUser use case failed")
+		t.Errorf("RegisterUser should be able to register %s\n", username)
+	}
+}
+
+func TestRegisterUniqueError(t *testing.T) {
+	username := "kylehipolito"
+
+	_, err := usecases.RegisterUser(username)
+	if err != nil {
+		t.Errorf("Register user failed")
+	}
+
+	_, err = usecases.RegisterUser(username)
+
+	if err == nil {
+		t.Errorf("RegisterUser should not be able to register user %s again", username)
 	}
 }

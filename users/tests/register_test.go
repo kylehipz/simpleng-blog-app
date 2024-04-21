@@ -19,7 +19,7 @@ func TestMain(m *testing.M) {
 	os.Exit(code)
 }
 
-func TestRegister(t *testing.T) {
+func TestRegisterSuccess(t *testing.T) {
 	username := "kylehipz"
 
 	newUser, err := usecases.RegisterUser(username)

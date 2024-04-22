@@ -7,7 +7,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 
-	"simpleng-blog-app/users/internal/models"
+	"simpleng-blog-app/common/pkg/models"
 )
 
 var DB *gorm.DB

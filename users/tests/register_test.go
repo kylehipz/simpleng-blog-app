@@ -4,8 +4,9 @@ import (
 	"os"
 	"testing"
 
-	"simpleng-blog-app/users/internal/database"
-	"simpleng-blog-app/users/internal/models"
+	"simpleng-blog-app/common/pkg/database"
+	"simpleng-blog-app/common/pkg/models"
+
 	"simpleng-blog-app/users/internal/usecases"
 )
 

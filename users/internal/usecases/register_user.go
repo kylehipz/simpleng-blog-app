@@ -1,8 +1,8 @@
 package usecases
 
 import (
-	"simpleng-blog-app/users/internal/database"
-	"simpleng-blog-app/users/internal/models"
+	"simpleng-blog-app/common/pkg/database"
+	"simpleng-blog-app/common/pkg/models"
 )
 
 func RegisterUser(username string) (*models.User, error) {

@@ -11,7 +11,7 @@ import (
 var DB *db.Queries
 
 func Connect() error {
-	dsn := "host=localhost port=5432 user=postgres sslmode=disable database=simpleng-blog-app"
+	dsn := "host=localhost port=5432 user=postgres password=postgres sslmode=disable database=simpleng-blog-app"
 
 	conn, err := pgx.Connect(context.Background(), dsn)
 	if err != nil {

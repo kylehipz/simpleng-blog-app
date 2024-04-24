@@ -15,7 +15,7 @@ func main() {
 	port := os.Getenv("PORT")
 	app := fiber.New()
 
-	_, err := database.Connect()
+	err := database.Connect()
 	if err != nil {
 		log.Fatal(err)
 	}

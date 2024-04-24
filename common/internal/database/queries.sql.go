@@ -5,7 +5,32 @@
 
 package database
 
-import "context"
+import (
+	"context"
+
+	"github.com/jackc/pgx/v5/pgtype"
+)
+
+const createFollowRel = `-- name: CreateFollowRel :one
+INSERT INTO follow (follower, followee) VALUES ($1, $2) RETURNING id, follower, followee, created_at
+`
+
+type CreateFollowRelParams struct {
+	Follower pgtype.UUID
+	Followee pgtype.UUID
+}
+
+func (q *Queries) CreateFollowRel(ctx context.Context, arg CreateFollowRelParams) (Follow, error) {
+	row := q.db.QueryRow(ctx, createFollowRel, arg.Follower, arg.Followee)
+	var i Follow
+	err := row.Scan(
+		&i.ID,
+		&i.Follower,
+		&i.Followee,
+		&i.CreatedAt,
+	)
+	return i, err
+}
 
 const createUser = `-- name: CreateUser :one
 INSERT INTO users (user_name) VALUES ($1) RETURNING id, user_name, created_at

@@ -1,28 +1,24 @@
 package database
 
 import (
-	"fmt"
-	"log"
+	"context"
 
-	"gorm.io/driver/postgres"
-	"gorm.io/gorm"
+	"github.com/jackc/pgx/v5"
 
-	"simpleng-blog-app/common/pkg/models"
+	db "simpleng-blog-app/common/internal/database"
 )
 
-var DB *gorm.DB
+var DB *db.Queries
 
-func Connect() {
-	dsn := "host=localhost user=postgres password=postgres dbname=simpleng-blog-app port=5432 sslmode=disable"
+func Connect() error {
+	dsn := "host=localhost port=5432 user=postgres sslmode=disable database=simpleng-blog-app"
 
-	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	conn, err := pgx.Connect(context.Background(), dsn)
 	if err != nil {
-		log.Fatal("Cannot connect to the database")
+		return err
 	}
 
-	db.AutoMigrate(&models.User{})
+	DB = db.New(conn)
 
-	fmt.Println("Successfully connected to the database")
-
-	DB = db
+	return nil
 }

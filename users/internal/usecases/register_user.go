@@ -1,17 +1,17 @@
 package usecases
 
 import (
-	"simpleng-blog-app/users/internal/database"
-	"simpleng-blog-app/users/internal/models"
+	"context"
+
+	"simpleng-blog-app/common/pkg/database"
 )
 
-func RegisterUser(username string) (*models.User, error) {
-	newUser := models.User{UserName: username}
+func RegisterUser(username string) (*database.User, error) {
+	db := database.DB
 
-	result := database.DB.Create(&newUser)
-
-	if result.Error != nil {
-		return nil, result.Error
+	newUser, err := db.CreateUser(context.Background(), username)
+	if err != nil {
+		return nil, err
 	}
 
 	return &newUser, nil

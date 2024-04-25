@@ -25,11 +25,7 @@ func main() {
 	v1 := app.Group("/api/v1/follow")
 	v1.Post("/follow", api.FollowUserHandler)
 
-	v1.Get("/unfollow", func(c fiber.Ctx) error {
-		return c.JSON(fiber.Map{
-			"data": "unfollow",
-		})
-	})
+	v1.Post("/unfollow", api.UnfollowUserHandler)
 
 	log.Fatal(app.Listen(fmt.Sprintf(":%v", port)))
 }

@@ -1,10 +1,10 @@
 # Simpleng Blog App
 
 ## Purpose
-The purpose of this document is to provide information about **_Simpleng Blog App, _**what it is, the functional requirements, non-functional requirements, technology stack to be used, database design, and system architecture.
+The purpose of this document is to provide information about **_Simpleng Blog App_**, what it is, the functional requirements, non-functional requirements, technology stack to be used, database design, and system architecture.
 
 ## What is Simpleng Blog App?
-**Simpleng Blog App **is a simple application that can handle blog posts, just like medium, twitter, facebook. The real purpose for creating this application is to learn new technologies and practice creating software architecture that is scalable and cost efficient
+**Simpleng Blog App** is a simple application that can handle blog posts, just like medium, twitter, facebook. The real purpose for creating this application is to learn new technologies and practice creating software architecture that is scalable and cost efficient
 
 ## Functional Requirements
 - A user should be able to register to the platform
@@ -33,6 +33,3 @@ The purpose of this document is to provide information about **_Simpleng Blog Ap
 - AWS EKS
 - AWS SNS
 - AWS SQS
-
-
-

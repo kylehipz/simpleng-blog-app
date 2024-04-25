@@ -42,3 +42,17 @@ func (q *Queries) CreateUser(ctx context.Context, userName string) (User, error)
 	err := row.Scan(&i.ID, &i.UserName, &i.CreatedAt)
 	return i, err
 }
+
+const deleteFollowRel = `-- name: DeleteFollowRel :exec
+DELETE FROM follow where follower = $1 and followee = $2
+`
+
+type DeleteFollowRelParams struct {
+	Follower pgtype.UUID
+	Followee pgtype.UUID
+}
+
+func (q *Queries) DeleteFollowRel(ctx context.Context, arg DeleteFollowRelParams) error {
+	_, err := q.db.Exec(ctx, deleteFollowRel, arg.Follower, arg.Followee)
+	return err
+}

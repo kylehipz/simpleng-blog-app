@@ -6,4 +6,6 @@ import db "simpleng-blog-app/common/internal/database"
 type (
 	CreateFollowRelParams = db.CreateFollowRelParams
 	DeleteFollowRelParams = db.DeleteFollowRelParams
+	CreateBlogParams      = db.CreateBlogParams
+	UpdateBlogParams      = db.UpdateBlogParams
 )

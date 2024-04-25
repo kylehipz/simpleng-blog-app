@@ -8,6 +8,15 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type Blog struct {
+	ID        pgtype.UUID
+	Author    pgtype.UUID
+	Title     string
+	Body      string
+	CreatedAt pgtype.Timestamptz
+	UpdatedAt pgtype.Timestamptz
+}
+
 type Follow struct {
 	ID        pgtype.UUID
 	Follower  pgtype.UUID

@@ -18,8 +18,8 @@ func main() {
 	database.Connect()
 	v1 := app.Group("/api/v1/blogs")
 	v1.Post("/", api.CreateBlogHandler)
+	v1.Patch("/:id", api.UpdateBlogHandler)
 	// v1.Delete("/")
-	// v1.Patch("/")
 
 	log.Fatal(app.Listen(fmt.Sprintf(":%v", port)))
 }

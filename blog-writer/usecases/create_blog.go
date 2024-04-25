@@ -8,6 +8,8 @@ import (
 )
 
 func CreateBlog(author string, title string, body string) (*database.Blog, error) {
+	db := database.DB
+
 	authorUUID := pgtype.UUID{}
 	authorUUID.Scan(author)
 
@@ -17,7 +19,7 @@ func CreateBlog(author string, title string, body string) (*database.Blog, error
 		Body:   body,
 	}
 
-	newBlog, err := database.DB.CreateBlog(context.Background(), params)
+	newBlog, err := db.CreateBlog(context.Background(), params)
 	if err != nil {
 		return nil, err
 	}

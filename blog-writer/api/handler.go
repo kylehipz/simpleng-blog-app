@@ -1,6 +1,7 @@
 package api
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -42,7 +43,38 @@ func CreateBlogHandler(c fiber.Ctx) error {
 	})
 }
 
-func UpdateBlogHandler(c fiber.Ctx) {
+type UpdateBlogRequestBody struct {
+	Title string `json:"title"`
+	Body  string `json:"body"`
+}
+
+func UpdateBlogHandler(c fiber.Ctx) error {
+	id := c.Params("id")
+	requestBody := UpdateBlogRequestBody{}
+	fmt.Println(id)
+
+	if err := c.Bind().Body(&requestBody); err != nil {
+		log.Println(err)
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "Invalid request body",
+		})
+	}
+
+	updatedBlog, err := usecases.UpdateBlog(
+		id,
+		requestBody.Title,
+		requestBody.Body,
+	)
+	if err != nil {
+		log.Println(err)
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "Error occured while updating a blog",
+		})
+	}
+
+	return c.Status(http.StatusCreated).JSON(fiber.Map{
+		"data": updatedBlog,
+	})
 }
 
 func DeleteBlogHandler(c fiber.Ctx) {

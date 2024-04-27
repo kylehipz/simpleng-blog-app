@@ -17,7 +17,10 @@ func RegisterUserHandler(c fiber.Ctx) error {
 	requestBody := RegisterRequestBody{}
 
 	if err := c.Bind().Body(&requestBody); err != nil {
-		log.Fatal(err)
+		log.Println(err)
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "Invalid request body",
+		})
 	}
 
 	newUser, err := usecases.RegisterUser(requestBody.UserName)

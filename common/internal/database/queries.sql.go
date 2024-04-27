@@ -11,6 +11,30 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+const createBlog = `-- name: CreateBlog :one
+INSERT INTO blogs (author, title, body) VALUES ($1, $2, $3) RETURNING id, author, title, body, created_at, updated_at
+`
+
+type CreateBlogParams struct {
+	Author pgtype.UUID
+	Title  string
+	Body   string
+}
+
+func (q *Queries) CreateBlog(ctx context.Context, arg CreateBlogParams) (Blog, error) {
+	row := q.db.QueryRow(ctx, createBlog, arg.Author, arg.Title, arg.Body)
+	var i Blog
+	err := row.Scan(
+		&i.ID,
+		&i.Author,
+		&i.Title,
+		&i.Body,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const createFollowRel = `-- name: CreateFollowRel :one
 INSERT INTO follow (follower, followee) VALUES ($1, $2) RETURNING id, follower, followee, created_at
 `
@@ -43,6 +67,15 @@ func (q *Queries) CreateUser(ctx context.Context, userName string) (User, error)
 	return i, err
 }
 
+const deleteBlog = `-- name: DeleteBlog :exec
+DELETE FROM blogs WHERE id = $1
+`
+
+func (q *Queries) DeleteBlog(ctx context.Context, id pgtype.UUID) error {
+	_, err := q.db.Exec(ctx, deleteBlog, id)
+	return err
+}
+
 const deleteFollowRel = `-- name: DeleteFollowRel :exec
 DELETE FROM follow where follower = $1 and followee = $2
 `
@@ -55,4 +88,32 @@ type DeleteFollowRelParams struct {
 func (q *Queries) DeleteFollowRel(ctx context.Context, arg DeleteFollowRelParams) error {
 	_, err := q.db.Exec(ctx, deleteFollowRel, arg.Follower, arg.Followee)
 	return err
+}
+
+const updateBlog = `-- name: UpdateBlog :one
+UPDATE blogs 
+SET
+  title = $2,
+  body = $3
+WHERE id = $1 RETURNING id, author, title, body, created_at, updated_at
+`
+
+type UpdateBlogParams struct {
+	ID    pgtype.UUID
+	Title string
+	Body  string
+}
+
+func (q *Queries) UpdateBlog(ctx context.Context, arg UpdateBlogParams) (Blog, error) {
+	row := q.db.QueryRow(ctx, updateBlog, arg.ID, arg.Title, arg.Body)
+	var i Blog
+	err := row.Scan(
+		&i.ID,
+		&i.Author,
+		&i.Title,
+		&i.Body,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
 }

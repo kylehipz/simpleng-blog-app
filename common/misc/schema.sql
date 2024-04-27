@@ -17,3 +17,14 @@ CREATE TABLE public.follow (
 );
 CREATE INDEX idx_follow_follower ON public.follow USING btree (follower);
 CREATE INDEX idx_follow_followee ON public.follow USING btree (followee);
+
+CREATE TABLE public.blogs (
+  id uuid PRIMARY KEY NOT NULL DEFAULT gen_random_uuid(),
+  author uuid NOT NULL,
+  title text NOT NULL,
+  body text NOT NULL,
+	created_at timestamptz NOT NULL DEFAULT now(),
+  updated_at timestamptz NULL
+);
+CREATE INDEX idx_blog_author ON public.blogs USING btree (author);
+CREATE INDEX idx_blog_title ON public.blogs USING btree (title);

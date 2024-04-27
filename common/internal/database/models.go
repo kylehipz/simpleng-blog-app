@@ -8,15 +8,24 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type Blog struct {
+	ID        pgtype.UUID        `json:"id"`
+	Author    pgtype.UUID        `json:"author"`
+	Title     string             `json:"title"`
+	Body      string             `json:"body"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
+	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
+}
+
 type Follow struct {
-	ID        pgtype.UUID
-	Follower  pgtype.UUID
-	Followee  pgtype.UUID
-	CreatedAt pgtype.Timestamptz
+	ID        pgtype.UUID        `json:"id"`
+	Follower  pgtype.UUID        `json:"follower"`
+	Followee  pgtype.UUID        `json:"followee"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
 }
 
 type User struct {
-	ID        pgtype.UUID
-	UserName  string
-	CreatedAt pgtype.Timestamptz
+	ID        pgtype.UUID        `json:"id"`
+	UserName  string             `json:"user_name"`
+	CreatedAt pgtype.Timestamptz `json:"created_at"`
 }

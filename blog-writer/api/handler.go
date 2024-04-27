@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -51,7 +50,6 @@ type UpdateBlogRequestBody struct {
 func UpdateBlogHandler(c fiber.Ctx) error {
 	id := c.Params("id")
 	requestBody := UpdateBlogRequestBody{}
-	fmt.Println(id)
 
 	if err := c.Bind().Body(&requestBody); err != nil {
 		log.Println(err)
@@ -77,5 +75,18 @@ func UpdateBlogHandler(c fiber.Ctx) error {
 	})
 }
 
-func DeleteBlogHandler(c fiber.Ctx) {
+func DeleteBlogHandler(c fiber.Ctx) error {
+	id := c.Params("id")
+
+	err := usecases.DeleteBlog(id)
+	if err != nil {
+		log.Println(err)
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "Error occured while deleting a blog",
+		})
+	}
+
+	return c.Status(http.StatusOK).JSON(fiber.Map{
+		"success": true,
+	})
 }

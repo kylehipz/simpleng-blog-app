@@ -15,11 +15,17 @@ func main() {
 	port := os.Getenv("PORT")
 	app := fiber.New()
 
-	database.Connect()
+	err := database.Connect()
+	if err != nil {
+		log.Fatal("Error connecting to the database")
+	}
+
+	log.Println("Database connected")
+
 	v1 := app.Group("/api/v1/blogs")
 	v1.Post("/", api.CreateBlogHandler)
 	v1.Patch("/:id", api.UpdateBlogHandler)
-	// v1.Delete("/")
+	v1.Delete("/:id", api.DeleteBlogHandler)
 
 	log.Fatal(app.Listen(fmt.Sprintf(":%v", port)))
 }

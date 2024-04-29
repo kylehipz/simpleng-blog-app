@@ -19,3 +19,14 @@ WHERE id = $1 RETURNING *;
 
 -- name: DeleteBlog :exec
 DELETE FROM blogs WHERE id = $1;
+
+-- name: GetBlogsFromFollowees :many
+SELECT b.* FROM blogs b 
+INNER JOIN follow f ON b.author = f.followee
+WHERE f.follower = $1 ORDER BY b.created_at DESC
+LIMIT $2 OFFSET $3;
+
+-- name: GetBlogsFromFolloweesCount :one
+SELECT count(b.*) FROM blogs b 
+INNER JOIN follow f ON b.author = f.followee
+WHERE f.follower = $1;

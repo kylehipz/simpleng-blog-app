@@ -90,6 +90,59 @@ func (q *Queries) DeleteFollowRel(ctx context.Context, arg DeleteFollowRelParams
 	return err
 }
 
+const getBlogsFromFollowees = `-- name: GetBlogsFromFollowees :many
+SELECT b.id, b.author, b.title, b.body, b.created_at, b.updated_at FROM blogs b 
+INNER JOIN follow f ON b.author = f.followee
+WHERE f.follower = $1 ORDER BY b.created_at DESC
+LIMIT $2 OFFSET $3
+`
+
+type GetBlogsFromFolloweesParams struct {
+	Follower pgtype.UUID
+	Limit    int32
+	Offset   int32
+}
+
+func (q *Queries) GetBlogsFromFollowees(ctx context.Context, arg GetBlogsFromFolloweesParams) ([]Blog, error) {
+	rows, err := q.db.Query(ctx, getBlogsFromFollowees, arg.Follower, arg.Limit, arg.Offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Blog
+	for rows.Next() {
+		var i Blog
+		if err := rows.Scan(
+			&i.ID,
+			&i.Author,
+			&i.Title,
+			&i.Body,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
+const getBlogsFromFolloweesCount = `-- name: GetBlogsFromFolloweesCount :one
+SELECT count(b.*) FROM blogs b 
+INNER JOIN follow f ON b.author = f.followee
+WHERE f.follower = $1
+`
+
+func (q *Queries) GetBlogsFromFolloweesCount(ctx context.Context, follower pgtype.UUID) (int64, error) {
+	row := q.db.QueryRow(ctx, getBlogsFromFolloweesCount, follower)
+	var count int64
+	err := row.Scan(&count)
+	return count, err
+}
+
 const updateBlog = `-- name: UpdateBlog :one
 UPDATE blogs 
 SET

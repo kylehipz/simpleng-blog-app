@@ -12,8 +12,7 @@ CREATE TABLE public.follow (
   follower uuid NOT NULL,
   followee uuid NOT NULL,
 	created_at timestamptz NOT NULL DEFAULT now(),
-	CONSTRAINT uni_follow_follower UNIQUE (follower),
-	CONSTRAINT uni_follow_followee UNIQUE (followee)
+	CONSTRAINT uni_follow_follow UNIQUE (follower, followee)
 );
 CREATE INDEX idx_follow_follower ON public.follow USING btree (follower);
 CREATE INDEX idx_follow_followee ON public.follow USING btree (followee);

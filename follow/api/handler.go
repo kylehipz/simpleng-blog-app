@@ -19,6 +19,15 @@ func FollowUserHandler(c fiber.Ctx) error {
 
 	if err := c.Bind().Body(&requestBody); err != nil {
 		log.Fatal(err)
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "Invalid payload",
+		})
+	}
+
+	if requestBody.Follower == requestBody.Followee {
+		return c.Status(http.StatusBadRequest).JSON(fiber.Map{
+			"message": "A user can't follow his/her self",
+		})
 	}
 
 	newFollow, err := usecases.FollowUser(requestBody.Follower, requestBody.Followee)

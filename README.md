@@ -19,17 +19,20 @@ The purpose of this document is to provide information about **_Simpleng Blog Ap
 ## Database Design
 [![Database Design](https://app.eraser.io/workspace/uFj0XfkrIEXLeRA9qaac/preview?elements=-wHSyNFibqALHvVjcz9u_Q&type=embed)](https://app.eraser.io/workspace/uFj0XfkrIEXLeRA9qaac?elements=-wHSyNFibqALHvVjcz9u_Q)
 
-## System Architecture
-[![System Architecture](https://app.eraser.io/workspace/uFj0XfkrIEXLeRA9qaac/preview?elements=ifXweAhWGEQ9a64IeugQ1Q&type=embed)](https://app.eraser.io/workspace/uFj0XfkrIEXLeRA9qaac?elements=ifXweAhWGEQ9a64IeugQ1Q)
+## High-level Architecture
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/5f9c58fd-497d-4575-ab42-aac9a830374a)
+
+## Integration of Services
+![image](https://github.com/kylehipz/simpleng-blog-app/assets/31435847/f4c36ce9-a1fe-415e-ba5d-4349e3853559)
 
 ## Technology Stack
 - Golang
 - Postgresql
 - Docker
-- Kubernetes
 - Elasticache - Redis
 - Terraform
-- Kubernetes
-- AWS EKS
+- Terragrunt
+- AWS ECS
+- AWS Fargate
 - AWS SNS
 - AWS SQS

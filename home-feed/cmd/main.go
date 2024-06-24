@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/gofiber/fiber/v3"
+	"simpleng-blog-app/common/pkg/cache"
 	"simpleng-blog-app/common/pkg/database"
 
 	"simpleng-blog-app/home-feed/api"
@@ -19,6 +20,8 @@ func main() {
 	if err != nil {
 		log.Fatal("Error connecting to the database")
 	}
+
+	cache.Connect()
 
 	log.Println("Database connected")
 

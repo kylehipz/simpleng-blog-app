@@ -10,7 +10,7 @@ import (
 func New() *redis.Client {
 	host := os.Getenv("REDIS_HOST")
 	port := os.Getenv("REDIS_PORT")
-	password := os.Getenv("DB_PASSWORD")
+	password := os.Getenv("REDIS_PASSWORD")
 
 	addr := fmt.Sprintf("%s:%s", host, port)
 
@@ -21,4 +21,12 @@ func New() *redis.Client {
 	})
 
 	return client
+}
+
+var Cache *redis.Client
+
+func Connect() *redis.Client {
+	Cache = New()
+
+	return Cache
 }

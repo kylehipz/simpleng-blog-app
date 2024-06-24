@@ -9,23 +9,23 @@ import (
 )
 
 type Blog struct {
-	ID        pgtype.UUID
-	Author    pgtype.UUID
-	Title     string
-	Body      string
-	CreatedAt pgtype.Timestamptz
-	UpdatedAt pgtype.Timestamptz
+	ID        pgtype.UUID        `json:"id"`
+	Author    pgtype.UUID        `json:"author"`
+	Title     string             `json:"title"`
+	Body      string             `json:"body"`
+	CreatedAt pgtype.Timestamptz `json:"createdAt"`
+	UpdatedAt pgtype.Timestamptz `json:"updatedAt"`
 }
 
 type Follow struct {
-	ID        pgtype.UUID
-	Follower  pgtype.UUID
-	Followee  pgtype.UUID
-	CreatedAt pgtype.Timestamptz
+	ID        pgtype.UUID        `json:"id"`
+	Follower  pgtype.UUID        `json:"follower"`
+	Followee  pgtype.UUID        `json:"followee"`
+	CreatedAt pgtype.Timestamptz `json:"createdAt"`
 }
 
 type User struct {
-	ID        pgtype.UUID
-	UserName  string
-	CreatedAt pgtype.Timestamptz
+	ID        pgtype.UUID        `json:"id"`
+	UserName  string             `json:"username"`
+	CreatedAt pgtype.Timestamptz `json:"createdAt"`
 }

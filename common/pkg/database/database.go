@@ -2,6 +2,8 @@ package database
 
 import (
 	"context"
+	"fmt"
+	"os"
 
 	"github.com/jackc/pgx/v5"
 
@@ -11,7 +13,15 @@ import (
 var DB *db.Queries
 
 func Connect() error {
-	dsn := "host=localhost port=5432 user=postgres password=postgres sslmode=disable database=simpleng-blog-app"
+	dsnFormat := "host=%s port=%s user=%s password=%s database=%s"
+
+	host := os.Getenv("DB_HOST")
+	dbPort := os.Getenv("DB_PORT")
+	user := os.Getenv("DB_USER")
+	password := os.Getenv("DB_PASSWORD")
+	dbName := os.Getenv("DB_NAME")
+
+	dsn := fmt.Sprintf(dsnFormat, host, dbPort, user, password, dbName)
 
 	conn, err := pgx.Connect(context.Background(), dsn)
 	if err != nil {
